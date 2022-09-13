@@ -37,23 +37,23 @@ public class ReqresTest {
                 .body()
                 .jsonPath().getList("data", User.class);
 
-        System.out.println("userList = " + userList);
 
         Assertions.assertAll(
                 () -> assertTrue(userList.stream().anyMatch(b -> b.getEmail().
-                        equals("lindsay.ferguson@reqres.in")))
+                        equals("lindsay.ferguson@reqres.in"))),
+
+                () -> assertThat(userList, hasItem(new User("tobias.funke@reqres.in"))),
+
+                () -> assertThat(userList, Matchers.containsInAnyOrder
+                        (new User("michael.lawson@reqres.in"),
+                                new User("lindsay.ferguson@reqres.in"),
+                                new User("tobias.funke@reqres.in"),
+                                new User("byron.fields@reqres.in"),
+                                new User("george.edwards@reqres.in"),
+                                new User("rachel.howell@reqres.in")
+                        ))
         );
 
-        assertThat(userList, hasItem(new User("tobias.funke@reqres.in")));
-
-        assertThat(userList, Matchers.containsInAnyOrder
-                (new User("michael.lawson@reqres.in"),
-                        new User("lindsay.ferguson@reqres.in"),
-                        new User("tobias.funke@reqres.in"),
-                        new User("byron.fields@reqres.in"),
-                        new User("george.edwards@reqres.in"),
-                        new User("rachel.howell@reqres.in")
-                ));
 
     }
 
