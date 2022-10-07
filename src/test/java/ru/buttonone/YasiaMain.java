@@ -14,14 +14,12 @@ public class YasiaMain {
 
         given()
                 .baseUri("https://reqres.in")
-                .param("email","eve1.holt2@reqres.in")
-                .param("password","pistol1")
+                .param("email","eve1.holt@reqres.in")
+                .param("password","pistol")
                 .when()
-                .get("/api/register")
+                .post("/api/register")
                 .then()
                 .statusCode(200)
         ;
-
     }
-
 }
